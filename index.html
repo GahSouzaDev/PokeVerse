@@ -1810,7 +1810,7 @@
             "use strict";
 
             // ═══════════════════════════════════════
-            // TRADUÇÕES (PT-BR) — ADICIONADAS AQUI
+            // TRADUÇÕES (PT-BR) — NOMES E TIPOS
             // ═══════════════════════════════════════
             const TRANSLATIONS = {
                 pokemon: {
@@ -1960,9 +1960,7 @@
                 formatId(n) { return '#' + String(n).padStart(4, '0') },
                 shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));
                         [a[i], a[j]] = [a[j], a[i]] } return a },
-                // --- NOVAS FUNÇÕES DE TRADUÇÃO ---
                 translatePokemonName(name) {
-                    // Normaliza nome para chave (substitui '-' por '_' para mr-mime, etc.)
                     const key = name.replace(/-/g, '_');
                     return TRANSLATIONS.pokemon[key] || this.capitalize(name);
                 },
@@ -1971,6 +1969,26 @@
                 },
                 translateAbility(name) {
                     return TRANSLATIONS.abilities[name] || this.capitalize(name);
+                },
+
+                // ─── NOVO: TRADUÇÃO DE TEXTO VIA MyMemory ──────────────
+                async translateText(text, from = 'en', to = 'pt') {
+                    if (!text) return '';
+                    try {
+                        const url =
+                            `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
+                        const res = await fetch(url);
+                        if (!res.ok) throw new Error('Falha na tradução');
+                        const data = await res.json();
+                        if (data.responseStatus === 200 && data.responseData) {
+                            return data.responseData.translatedText;
+                        } else {
+                            throw new Error('Resposta inválida da API');
+                        }
+                    } catch (e) {
+                        console.warn('Erro ao traduzir:', e);
+                        return null; // retorna null para indicar falha
+                    }
                 }
             };
 
@@ -2068,7 +2086,7 @@
                 }
             };
 
-            // ─── VOICE SYNTHESIS (com texto em português) ──────────────
+            // ─── VOICE SYNTHESIS ────────────────────────────────────────
             const VoiceSynth = {
                 _speaking: false,
                 _btn: null,
@@ -2104,7 +2122,6 @@
 
                     let flavorText = '';
                     if (species) {
-                        // Buscar descrição em português (pt-BR ou pt)
                         const ptEntry = species.flavor_text_entries?.find(e => e.language.name === 'pt' || e.language
                             .name === 'pt-BR');
                         const entry = ptEntry || species.flavor_text_entries?.find(e => e.language.name === 'en');
@@ -2179,7 +2196,7 @@
                     this.resolve() }
             };
 
-            // ─── VIEWS (com traduções aplicadas) ──────────────────────
+            // ─── VIEWS ──────────────────────────────────────────────────
             const Views = {
                 main: () => document.getElementById('appMain'),
                 _currentDetailPokemon: null,
@@ -2208,9 +2225,7 @@
 
                 pokeCard(pokemon) {
                     const id = pokemon.id;
-                    // TRADUÇÃO DO NOME
                     const name = Utils.translatePokemonName(pokemon.name);
-                    // TRADUÇÃO DOS TIPOS
                     const types = pokemon.types.map(t => Utils.translateType(t.type.name));
                     const sprite = pokemon.sprites?.front_default || '';
                     const isFav = Store.isFav(id);
@@ -2977,16 +2992,43 @@
                     top.appendChild(infoBox);
                     body.appendChild(top);
 
+                    // ─── TRADUÇÃO DA DESCRIÇÃO ──────────────────────────
                     if (species) {
-                        // Buscar texto em português
+                        const flavorContainer = Utils.el('div', { class: 'flavor-text' });
+                        body.appendChild(flavorContainer);
+
+                        // Tenta obter descrição em português
                         const ptEntry = species.flavor_text_entries?.find(e => e.language.name === 'pt' || e.language
                             .name === 'pt-BR');
-                        const flavor = ptEntry?.flavor_text || species.flavor_text_entries?.find(e => e.language
-                            .name === 'en')?.flavor_text || '';
-                        if (flavor) {
-                            body.appendChild(Utils.el('div', { class: 'flavor-text' }, [flavor.replace(/[\n\f]/g,
-                                ' ')]));
+                        if (ptEntry) {
+                            // Já tem em pt – usa direto
+                            flavorContainer.textContent = ptEntry.flavor_text.replace(/[\n\f]/g, ' ');
+                        } else {
+                            // Busca descrição em inglês e traduz
+                            const enEntry = species.flavor_text_entries?.find(e => e.language.name === 'en');
+                            if (enEntry) {
+                                const originalText = enEntry.flavor_text.replace(/[\n\f]/g, ' ');
+                                flavorContainer.textContent = '🔄 Traduzindo...';
+                                // Traduz assincronamente
+                                Utils.translateText(originalText, 'en', 'pt')
+                                    .then(translated => {
+                                        if (translated) {
+                                            flavorContainer.textContent = translated;
+                                        } else {
+                                            flavorContainer.textContent =
+                                                'Descrição não disponível em português.';
+                                        }
+                                    })
+                                    .catch(() => {
+                                        flavorContainer.textContent =
+                                        'Descrição não disponível em português.';
+                                    });
+                            } else {
+                                flavorContainer.textContent = 'Descrição não disponível.';
+                            }
                         }
+
+                        // Evolução
                         if (species.evolution_chain) {
                             const chainUrl = species.evolution_chain.url;
                             const chainId = chainUrl.split('/').filter(Boolean).pop();
