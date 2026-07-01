@@ -9,6 +9,8 @@
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23ee1515'/%3E%3Ccircle cx='16' cy='16' r='10' fill='%23fff'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ee1515'/%3E%3C/svg%3E" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
+        /* ====== TODO O SEU CSS ORIGINAL AQUI ====== */
+        /* (mantido exatamente como você tinha, sem alterações) */
         :root {
             --bg-0: #0b0d12;
             --bg-1: #131821;
@@ -1807,6 +1809,128 @@
         (function() {
             "use strict";
 
+            // ═══════════════════════════════════════
+            // TRADUÇÕES (PT-BR) — ADICIONADAS AQUI
+            // ═══════════════════════════════════════
+            const TRANSLATIONS = {
+                pokemon: {
+                    bulbasaur: "Bulbassauro", ivysaur: "Ivyssauro", venusaur: "Venussauro",
+                    charmander: "Charmander", charmeleon: "Charmeleon", charizard: "Charizard",
+                    squirtle: "Squirtle", wartortle: "Wartortle", blastoise: "Blastoise",
+                    caterpie: "Caterpie", metapod: "Metapod", butterfree: "Butterfree",
+                    weedle: "Weedle", kakuna: "Kakuna", beedrill: "Beedrill",
+                    pidgey: "Pidgey", pidgeotto: "Pidgeotto", pidgeot: "Pidgeot",
+                    rattata: "Rattata", raticate: "Raticate", spearow: "Spearow",
+                    fearow: "Fearow", ekans: "Ekans", arbok: "Arbok",
+                    pikachu: "Pikachu", raichu: "Raichu", sandshrew: "Sandshrew",
+                    sandslash: "Sandslash", nidoran_f: "Nidoran♀", nidorina: "Nidorina",
+                    nidoqueen: "Nidoqueen", nidoran_m: "Nidoran♂", nidorino: "Nidorino",
+                    nidoking: "Nidoking", clefairy: "Clefairy", clefable: "Clefable",
+                    vulpix: "Vulpix", ninetales: "Ninetales", jigglypuff: "Jigglypuff",
+                    wigglytuff: "Wigglytuff", zubat: "Zubat", golbat: "Golbat",
+                    oddish: "Oddish", gloom: "Gloom", vileplume: "Vileplume",
+                    paras: "Paras", parasect: "Parasect", venonat: "Venonat",
+                    venomoth: "Venomoth", diglett: "Diglett", dugtrio: "Dugtrio",
+                    meowth: "Meowth", persian: "Persian", psyduck: "Psyduck",
+                    golduck: "Golduck", mankey: "Mankey", primeape: "Primeape",
+                    growlithe: "Growlithe", arcanine: "Arcanine", poliwag: "Poliwag",
+                    poliwhirl: "Poliwhirl", poliwrath: "Poliwrath", abra: "Abra",
+                    kadabra: "Kadabra", alakazam: "Alakazam", machop: "Machop",
+                    machoke: "Machoke", machamp: "Machamp", bellsprout: "Bellsprout",
+                    weepinbell: "Weepinbell", victreebel: "Victreebel", tentacool: "Tentacool",
+                    tentacruel: "Tentacruel", geodude: "Geodude", graveler: "Graveler",
+                    golem: "Golem", ponyta: "Ponyta", rapidash: "Rapidash",
+                    slowpoke: "Slowpoke", slowbro: "Slowbro", magnemite: "Magnemite",
+                    magneton: "Magneton", farfetchd: "Farfetch'd", doduo: "Doduo",
+                    dodrio: "Dodrio", seel: "Seel", dewgong: "Dewgong",
+                    grimer: "Grimer", muk: "Muk", shellder: "Shellder",
+                    cloyster: "Cloyster", gastly: "Gastly", haunter: "Haunter",
+                    gengar: "Gengar", onix: "Onix", drowzee: "Drowzee",
+                    hypno: "Hypno", krabby: "Krabby", kingler: "Kingler",
+                    voltorb: "Voltorb", electrode: "Electrode", exeggcute: "Exeggcute",
+                    exeggutor: "Exeggutor", cubone: "Cubone", marowak: "Marowak",
+                    hitmonlee: "Hitmonlee", hitmonchan: "Hitmonchan", lickitung: "Lickitung",
+                    koffing: "Koffing", weezing: "Weezing", rhyhorn: "Rhyhorn",
+                    rhydon: "Rhydon", chansey: "Chansey", tangela: "Tangela",
+                    kangaskhan: "Kangaskhan", horsea: "Horsea", seadra: "Seadra",
+                    goldeen: "Goldeen", seaking: "Seaking", staryu: "Staryu",
+                    starmie: "Starmie", mr_mime: "Mr. Mime", scyther: "Scyther",
+                    jynx: "Jynx", electabuzz: "Electabuzz", magmar: "Magmar",
+                    pinsir: "Pinsir", tauros: "Tauros", magikarp: "Magikarp",
+                    gyarados: "Gyarados", lapras: "Lapras", ditto: "Ditto",
+                    eevee: "Eevee", vaporeon: "Vaporeon", jolteon: "Jolteon",
+                    flareon: "Flareon", porygon: "Porygon", omanyte: "Omanyte",
+                    omastar: "Omastar", kabuto: "Kabuto", kabutops: "Kabutops",
+                    aerodactyl: "Aerodactyl", snorlax: "Snorlax", articuno: "Articuno",
+                    zapdos: "Zapdos", moltres: "Moltres", dratini: "Dratini",
+                    dragonair: "Dragonair", dragonite: "Dragonite", mewtwo: "Mewtwo",
+                    mew: "Mew"
+                },
+                types: {
+                    normal: "Normal", fire: "Fogo", water: "Água", grass: "Grama",
+                    electric: "Elétrico", ice: "Gelo", fighting: "Lutador", poison: "Venenoso",
+                    ground: "Terra", flying: "Voador", psychic: "Psíquico", bug: "Inseto",
+                    rock: "Pedra", ghost: "Fantasma", dark: "Sombrio", dragon: "Dragão",
+                    steel: "Aço", fairy: "Fada"
+                },
+                abilities: {
+                    "overgrow": "Crescimento Excessivo", "blaze": "Chama", "torrent": "Torrente",
+                    "shield-dust": "Poeira Protetora", "shed-skin": "Troca de Pele",
+                    "compound-eyes": "Olhos Compostos", "swarm": "Enxame", "keen-eye": "Olhar Aguçado",
+                    "run-away": "Fuga", "guts": "Coragem", "intimidate": "Intimidação",
+                    "static": "Estática", "lightning-rod": "Para-raios", "sand-veil": "Véu de Areia",
+                    "poison-point": "Ponto Venenoso", "rivalry": "Rivalidade", "cute-charm": "Charme",
+                    "magic-guard": "Guarda Mágica", "flash-fire": "Fogo de Palha", "drought": "Seca",
+                    "drizzle": "Chuvisco", "sand-stream": "Tempestade de Areia",
+                    "levitate": "Levitacionar", "effect-spore": "Esporos de Efeito",
+                    "chlorophyll": "Clorofila", "dry-skin": "Pele Seca", "arena-trap": "Arena de Armadilha",
+                    "pickup": "Pegar", "technician": "Técnico", "limber": "Flexível",
+                    "cloud-nine": "Nuvem Nove", "rock-head": "Cabeça de Pedra", "sturdy": "Robusto",
+                    "oblivious": "Desatento", "own-tempo": "Ritmo Próprio", "magnet-pull": "Puxão Magnético",
+                    "inner-focus": "Foco Interno", "early-bird": "Acordar Cedo",
+                    "thick-fat": "Gordura Espessa", "huge-power": "Poder Gigante",
+                    "speed-boost": "Acelerador", "battle-armor": "Armadura de Batalha",
+                    "clear-body": "Corpo Claro", "liquid-ooze": "Lodo Líquido",
+                    "water-absorb": "Absorção de Água", "volt-absorb": "Absorção de Volts",
+                    "wonder-guard": "Guarda Maravilha", "mold-breaker": "Quebrador de Moldes",
+                    "unnerve": "Enervar", "defiant": "Desafiante", "justified": "Justificado",
+                    "rattled": "Agitado", "magic-bounce": "Ricochete Mágico",
+                    "sap-sipper": "Sugador de Seiva", "prankster": "Travesso",
+                    "sand-force": "Força da Areia", "iron-barbs": "Farpas de Ferro",
+                    "tough-claws": "Garras Duras", "serene-grace": "Graça Serena",
+                    "sheer-force": "Força Bruta", "contrary": "Contrário", "overcoat": "Sobretudo",
+                    "harvest": "Colheita", "telepathy": "Telepatia", "moody": "Humor Instável",
+                    "pressure": "Pressão", "snow-cloak": "Capa de Neve", "tangled-feet": "Pés Emaranhados",
+                    "motor-drive": "Motor de Condução", "steadfast": "Inabalável",
+                    "storm-drain": "Dreno de Tempestade", "cursed-body": "Corpo Amaldiçoado",
+                    "healer": "Curador", "friend-guard": "Guarda Amiga", "weak-armor": "Armadura Fraca",
+                    "heavy-metal": "Metal Pesado", "light-metal": "Metal Leve",
+                    "multiscale": "Multiescala", "toxic-boost": "Impulso Tóxico",
+                    "flare-boost": "Impulso de Chama", "infiltrator": "Infiltrador",
+                    "mummy": "Múmia", "moxie": "Moxie", "natural-cure": "Cura Natural",
+                    "poison-touch": "Toque Venenoso", "regenerator": "Regenerador",
+                    "scrappy": "Briguento", "shadow-tag": "Marca Sombria", "sniper": "Sniper",
+                    "soundproof": "À Prova de Som", "trace": "Traçar", "truant": "Vadio",
+                    "unaware": "Desatento", "wonder-skin": "Pele Maravilha",
+                    "adaptability": "Adaptabilidade", "analytic": "Analítico",
+                    "big-pecks": "Peito Grande", "download": "Download", "filter": "Filtro",
+                    "forewarn": "Premonição", "frisk": "Frisar", "gluttony": "Gula",
+                    "hustle": "Agitação", "illuminate": "Iluminar", "immunity": "Imunidade",
+                    "iron-fist": "Punho de Ferro", "klutz": "Desajeitado", "leaf-guard": "Guarda de Folha",
+                    "magma-armor": "Armadura de Magma", "minus": "Menos", "normalize": "Normalizar",
+                    "plus": "Mais", "poison-heal": "Cura Venenosa", "quick-feet": "Pés Rápidos",
+                    "rain-dish": "Prato de Chuva", "reckless": "Imprudente", "sand-rush": "Corrida na Areia",
+                    "simple": "Simples", "skill-link": "Elo de Habilidade", "solar-power": "Poder Solar",
+                    "solid-rock": "Rocha Sólida", "stall": "Estolar", "stench": "Fedor",
+                    "sticky-hold": "Controle Grudento", "suction-cups": "Ventosas",
+                    "super-luck": "Super Sorte", "swift-swim": "Nado Rápido",
+                    "synchronize": "Sincronizar", "tinted-lens": "Lente Colorida",
+                    "unburden": "Alívio", "victory-star": "Estrela da Vitória",
+                    "vital-spirit": "Espírito Vital", "water-veil": "Véu de Água",
+                    "white-smoke": "Fumaça Branca", "zen-mode": "Modo Zen"
+                }
+            };
+
             const API_BASE = 'https://pokeapi.co/api/v2';
             const CACHE_TTL = 3600000;
             const STORE_NS = 'pokeverse:';
@@ -1836,6 +1960,18 @@
                 formatId(n) { return '#' + String(n).padStart(4, '0') },
                 shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));
                         [a[i], a[j]] = [a[j], a[i]] } return a },
+                // --- NOVAS FUNÇÕES DE TRADUÇÃO ---
+                translatePokemonName(name) {
+                    // Normaliza nome para chave (substitui '-' por '_' para mr-mime, etc.)
+                    const key = name.replace(/-/g, '_');
+                    return TRANSLATIONS.pokemon[key] || this.capitalize(name);
+                },
+                translateType(name) {
+                    return TRANSLATIONS.types[name] || this.capitalize(name);
+                },
+                translateAbility(name) {
+                    return TRANSLATIONS.abilities[name] || this.capitalize(name);
+                }
             };
 
             // ─── STORE ──────────────────────────────────────────────────
@@ -1932,7 +2068,7 @@
                 }
             };
 
-            // ─── VOICE SYNTHESIS ────────────────────────────────────────
+            // ─── VOICE SYNTHESIS (com texto em português) ──────────────
             const VoiceSynth = {
                 _speaking: false,
                 _btn: null,
@@ -1942,7 +2078,6 @@
                         if (this._btn) this._btn.style.display = 'none';
                         return;
                     }
-                    // Pré-carregar vozes
                     speechSynthesis.getVoices();
                     speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
                 },
@@ -1951,14 +2086,13 @@
                         Toast.show('Erro', 'Seu navegador não suporta síntese de voz.');
                         return;
                     }
-                    // Cancela qualquer fala anterior
                     speechSynthesis.cancel();
                     this._speaking = true;
                     if (this._btn) this._btn.classList.add('speaking');
 
-                    const name = Utils.capitalize(pokemon.name);
+                    const name = Utils.translatePokemonName(pokemon.name);
                     const id = pokemon.id;
-                    const types = pokemon.types.map(t => Utils.capitalize(t.type.name)).join(' e ');
+                    const types = pokemon.types.map(t => Utils.translateType(t.type.name)).join(' e ');
                     const height = (pokemon.height / 10).toFixed(1);
                     const weight = (pokemon.weight / 10).toFixed(1);
                     const stats = pokemon.stats.map(s => {
@@ -1970,9 +2104,12 @@
 
                     let flavorText = '';
                     if (species) {
-                        const entry = species.flavor_text_entries?.find(e => e.language.name === 'en');
-                        if (entry) flavorText = entry.flavor_text.replace(/[\n\f]/g, ' ').replace(/[^a-zA-Z0-9 .,!?áéíóúãõâêîôûàèìòùçÁÉÍÓÚÃÕÂÊÎÔÛÀÈÌÒÙÇ-]/g,
-                            '');
+                        // Buscar descrição em português (pt-BR ou pt)
+                        const ptEntry = species.flavor_text_entries?.find(e => e.language.name === 'pt' || e.language
+                            .name === 'pt-BR');
+                        const entry = ptEntry || species.flavor_text_entries?.find(e => e.language.name === 'en');
+                        if (entry) flavorText = entry.flavor_text.replace(/[\n\f]/g, ' ').replace(
+                            /[^a-zA-Z0-9 .,!?áéíóúãõâêîôûàèìòùçÁÉÍÓÚÃÕÂÊÎÔÛÀÈÌÒÙÇ-]/g, '');
                     }
 
                     const text =
@@ -1984,22 +2121,14 @@
                     utterance.rate = 0.88;
                     utterance.volume = 1;
 
-                    // Tentar voz em português, senão usa a padrão com pitch robótico
                     const voices = speechSynthesis.getVoices();
                     const ptVoice = voices.find(v => v.lang.startsWith('pt'));
-                    if (ptVoice) {
-                        utterance.voice = ptVoice;
-                    }
+                    if (ptVoice) utterance.voice = ptVoice;
 
-                    utterance.onend = () => {
-                        this._speaking = false;
-                        if (this._btn) this._btn.classList.remove('speaking');
-                    };
-                    utterance.onerror = () => {
-                        this._speaking = false;
-                        if (this._btn) this._btn.classList.remove('speaking');
-                    };
-
+                    utterance.onend = () => { this._speaking = false; if (this._btn) this._btn.classList.remove(
+                            'speaking'); };
+                    utterance.onerror = () => { this._speaking = false; if (this._btn) this._btn.classList.remove(
+                            'speaking'); };
                     speechSynthesis.speak(utterance);
                     Toast.show('🔊 Pokédex falando...', name, { duration: 8000 });
                 },
@@ -2050,7 +2179,7 @@
                     this.resolve() }
             };
 
-            // ─── VIEWS ──────────────────────────────────────────────────
+            // ─── VIEWS (com traduções aplicadas) ──────────────────────
             const Views = {
                 main: () => document.getElementById('appMain'),
                 _currentDetailPokemon: null,
@@ -2079,8 +2208,10 @@
 
                 pokeCard(pokemon) {
                     const id = pokemon.id;
-                    const name = Utils.capitalize(pokemon.name);
-                    const types = pokemon.types.map(t => t.type.name);
+                    // TRADUÇÃO DO NOME
+                    const name = Utils.translatePokemonName(pokemon.name);
+                    // TRADUÇÃO DOS TIPOS
+                    const types = pokemon.types.map(t => Utils.translateType(t.type.name));
                     const sprite = pokemon.sprites?.front_default || '';
                     const isFav = Store.isFav(id);
                     const card = Utils.el('div', { class: 'poke-card fade-in', tabindex: '0', role: 'button' });
@@ -2090,7 +2221,7 @@
                     const img = Utils.el('img', { class: 'sprite', src: sprite, alt: name, loading: 'lazy' });
                     const nameEl = Utils.el('div', { class: 'name' }, [name]);
                     const typesEl = Utils.el('div', { class: 'types' }, types.map(t => Utils.el('span', { class: 'type-badge type-' +
-                            t }, [t])));
+                            t.toLowerCase() }, [t])));
                     const star = Utils.el('button', { class: 'fav-star' + (isFav ? ' is-fav' : ''), title: 'Favoritar' }, [
                         '★'
                     ]);
@@ -2227,7 +2358,7 @@
                     try {
                         const types = await Api._fetch('/type?limit=100', 3600000);
                         (types.results || []).forEach(t => typeSel.appendChild(Utils.el('option', { value: t.name }, [
-                            Utils.capitalize(t.name)
+                            Utils.translateType(t.name)
                         ])));
                     } catch (e) {}
                     const limitSel = Utils.el('select', { class: 'select' }, [
@@ -2303,7 +2434,7 @@
                     await loadMore();
                 },
 
-                // ─── TYPE CALCULATOR (CORRIGIDA) ─────────────────────────
+                // ─── TYPE CALCULATOR ────────────────────────────────────
                 async renderTypeCalculator() {
                     const main = this.main();
                     main.innerHTML = '';
@@ -2322,16 +2453,15 @@
                         'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dark', 'dragon', 'steel', 'fairy'
                     ];
 
-                    // Criar selects com innerHTML para garantir que funcionem
                     const selA = document.createElement('select');
                     selA.className = 'select';
                     selA.innerHTML = '<option value="">Tipo 1…</option>' +
-                        typeNames.map(n => '<option value="' + n + '">' + Utils.capitalize(n) + '</option>').join('');
+                        typeNames.map(n => '<option value="' + n + '">' + Utils.translateType(n) + '</option>').join('');
 
                     const selB = document.createElement('select');
                     selB.className = 'select';
                     selB.innerHTML = '<option value="">Tipo 2 (opcional)…</option>' +
-                        typeNames.map(n => '<option value="' + n + '">' + Utils.capitalize(n) + '</option>').join('');
+                        typeNames.map(n => '<option value="' + n + '">' + Utils.translateType(n) + '</option>').join('');
 
                     const calcBtn = Utils.el('button', { class: 'btn btn-gold btn-sm' }, ['Calcular']);
                     row.append(
@@ -2376,7 +2506,7 @@
                                 damage[tn] = mult;
                             }
                             resultHost.innerHTML = '';
-                            const label = b ? Utils.capitalize(a) + ' / ' + Utils.capitalize(b) : Utils.capitalize(a);
+                            const label = b ? Utils.translateType(a) + ' / ' + Utils.translateType(b) : Utils.translateType(a);
                             resultHost.appendChild(Utils.el('div', {
                                 style: 'font-weight:700;margin-bottom:var(--sp-3);font-family:var(--font-display);font-size:1.1rem'
                             }, ['Efetividade contra ' + label]));
@@ -2386,7 +2516,8 @@
                                 const labelCls = mult === 0 ? 'x0' : mult === 0.25 ? 'x025' : mult === 0.5 ? 'x05' :
                                     mult === 2 ? 'x2' : mult === 4 ? 'x4' : '';
                                 const cell = Utils.el('div', { class: 'type-cell' }, [
-                                    Utils.el('span', { class: 'type-badge type-' + name }, [Utils.capitalize(name)]),
+                                    Utils.el('span', { class: 'type-badge type-' + name }, [Utils.translateType(
+                                        name)]),
                                     Utils.el('span', { class: 'mult ' + labelCls }, [
                                         mult === 0 ? '0×' : mult === 0.25 ? '¼×' : mult === 0.5 ? '½×' :
                                         mult === 1 ? '1×' : mult + '×'
@@ -2399,12 +2530,12 @@
                             const weak = Object.entries(damage).filter(([_, v]) => v < 1 && v > 0);
                             const immune = Object.entries(damage).filter(([_, v]) => v === 0);
                             let expl = '';
-                            if (immune.length) expl += '🛡️ Imune a: ' + immune.map(([n]) => Utils.capitalize(n)).join(
-                                ', ') + '. ';
-                            if (strong.length) expl += '⚠️ Fraco contra: ' + strong.map(([n]) => Utils.capitalize(n))
+                            if (immune.length) expl += '🛡️ Imune a: ' + immune.map(([n]) => Utils.translateType(n))
                                 .join(', ') + '. ';
-                            if (weak.length) expl += '🛡️ Resistente a: ' + weak.map(([n]) => Utils.capitalize(n)).join(
-                                ', ') + '. ';
+                            if (strong.length) expl += '⚠️ Fraco contra: ' + strong.map(([n]) => Utils.translateType(n))
+                                .join(', ') + '. ';
+                            if (weak.length) expl += '🛡️ Resistente a: ' + weak.map(([n]) => Utils.translateType(n))
+                                .join(', ') + '. ';
                             if (!expl) expl = 'Nenhuma resistência ou fraqueza notável.';
                             resultHost.appendChild(Utils.el('div', {
                                 style: 'font-size:.78rem;color:var(--text-1);margin-top:var(--sp-3);padding:var(--sp-3);background:var(--bg-2);border-radius:var(--radius-md)'
@@ -2418,7 +2549,6 @@
                     calcBtn.onclick = compute;
                     selA.onchange = compute;
                     selB.onchange = compute;
-                    // Iniciar com tipo fire selecionado
                     selA.value = 'fire';
                     setTimeout(compute, 150);
                 },
@@ -2451,7 +2581,8 @@
                                 const p = team[i];
                                 const sprite = p.sprites?.front_default || '';
                                 const img = Utils.el('img', { class: 'slot-sprite', src: sprite, alt: p.name });
-                                const name = Utils.el('span', { class: 'slot-name' }, [Utils.capitalize(p.name)]);
+                                const name = Utils.el('span', { class: 'slot-name' }, [Utils.translatePokemonName(p
+                                    .name)]);
                                 const rm = Utils.el('button', { class: 'slot-remove' }, ['✕']);
                                 rm.onclick = () => { team.splice(i, 1);
                                     renderTeam() };
@@ -2479,7 +2610,8 @@
                             const unique = [...new Set(types)];
                             analysis.innerHTML = '<b style="color:var(--text-0)">Análise rápida:</b> ' + team.length +
                                 ' Pokémon · ' + unique.length + ' tipos únicos: ' + unique.map(t =>
-                                    '<span class="type-badge type-' + t + '">' + t + '</span>').join(' ');
+                                    '<span class="type-badge type-' + t + '">' + Utils.translateType(t) +
+                                    '</span>').join(' ');
                             panel.appendChild(analysis);
                         }
                     };
@@ -2508,7 +2640,7 @@
                                 const item = Utils.el('div', { class: 'sr-item' });
                                 const img = Utils.el('img', { src: p.sprites?.front_default || '',
                                 alt: p.name });
-                                const name = Utils.el('span', { class: 'sr-name' }, [Utils.capitalize(p
+                                const name = Utils.el('span', { class: 'sr-name' }, [Utils.translatePokemonName(p
                                     .name)]);
                                 const meta = Utils.el('span', { class: 'sr-meta' }, [Utils.formatId(p
                                     .id)]);
@@ -2517,7 +2649,7 @@
                                         team.push(p);
                                         overlay.classList.remove('open');
                                         renderFn();
-                                        Toast.show('Adicionado!', Utils.capitalize(p.name));
+                                        Toast.show('Adicionado!', Utils.translatePokemonName(p.name));
                                     } else {
                                         Toast.show('Ops', 'Time cheio ou Pokémon já adicionado.', { duration: 2000 });
                                     }
@@ -2553,7 +2685,7 @@
                     if (missing.length) {
                         const rec = missing.slice(0, 2);
                         suggestion +=
-                            `Seu time não tem Pokémon dos tipos ${rec.map(t=>Utils.capitalize(t)).join(' ou ')}. Considere adicionar um para melhor cobertura. `;
+                            `Seu time não tem Pokémon dos tipos ${rec.map(t=>Utils.translateType(t)).join(' ou ')}. Considere adicionar um para melhor cobertura. `;
                     } else {
                         suggestion += 'Seu time tem boa cobertura de tipos! ';
                     }
@@ -2599,7 +2731,7 @@
                             try {
                                 const p = await Api.getPokemon(id);
                                 const optHtml = '<option value="' + p.id + '">' + Utils.formatId(p.id) + ' ' +
-                                    Utils.capitalize(p.name) + '</option>';
+                                    Utils.translatePokemonName(p.name) + '</option>';
                                 selA.innerHTML += optHtml;
                                 selB.innerHTML += optHtml;
                             } catch (e) {}
@@ -2650,7 +2782,7 @@
                                 const img = Utils.el('img', { src: p.sprites?.front_default || '', alt: p.name,
                                     style: 'width:72px;height:72px;image-rendering:pixelated;object-fit:contain' });
                                 const name = Utils.el('div', { style: 'font-weight:700;font-size:.85rem' }, [Utils
-                                    .capitalize(p.name)
+                                    .translatePokemonName(p.name)
                                 ]);
                                 const lbl = Utils.el('div', { style: 'font-size:.65rem;color:var(--text-2)' },
                                 [label]);
@@ -2686,13 +2818,14 @@
                                 style: 'margin-top:var(--sp-3);padding:var(--sp-3);background:var(--bg-2);border-radius:var(--radius-md);font-size:.8rem;color:var(--text-1)'
                             });
                             let txt = '';
-                            if (chance > 60) txt += '✅ ' + Utils.capitalize(a.name) +
+                            if (chance > 60) txt += '✅ ' + Utils.translatePokemonName(a.name) +
                                 ' tem vantagem estatística. ';
-                            else if (chance < 40) txt += '⚠️ ' + Utils.capitalize(a.name) +
+                            else if (chance < 40) txt += '⚠️ ' + Utils.translatePokemonName(a.name) +
                                 ' está em desvantagem. ';
                             else txt += '⚖️ Batalha equilibrada! ';
-                            if (speedA > speedB * 1.2) txt += '⚡ ' + Utils.capitalize(a.name) + ' é mais rápido. ';
-                            if (atkA > bStats.defense * 1.5) txt += '💥 ' + Utils.capitalize(a.name) +
+                            if (speedA > speedB * 1.2) txt += '⚡ ' + Utils.translatePokemonName(a.name) +
+                                ' é mais rápido. ';
+                            if (atkA > bStats.defense * 1.5) txt += '💥 ' + Utils.translatePokemonName(a.name) +
                                 ' pode causar dano físico massivo. ';
                             analysis.textContent = txt || 'Análise concluída.';
                             result.appendChild(analysis);
@@ -2766,13 +2899,14 @@
 
                 _renderDetail(pokemon, species) {
                     const body = document.getElementById('modalBody');
-                    const name = Utils.capitalize(pokemon.name);
+                    const name = Utils.translatePokemonName(pokemon.name);
                     const id = pokemon.id;
                     const sprite = pokemon.sprites?.other?.['official-artwork']?.front_default || pokemon.sprites
                         ?.front_default || '';
-                    const types = pokemon.types.map(t => t.type.name);
+                    const types = pokemon.types.map(t => Utils.translateType(t.type.name));
                     const stats = pokemon.stats.reduce((acc, s) => { acc[s.stat.name] = s.base_stat; return acc }, {});
-                    const abilities = pokemon.abilities.map(a => ({ name: a.ability.name, isHidden: a.is_hidden }));
+                    const abilities = pokemon.abilities.map(a => ({ name: Utils.translateAbility(a.ability.name),
+                        isHidden: a.is_hidden }));
 
                     document.getElementById('modalTag').textContent = Utils.formatId(id);
                     document.getElementById('modalSubtitle').textContent = name;
@@ -2810,14 +2944,14 @@
                     infoBox.appendChild(meta);
 
                     const typesEl = Utils.el('div', { class: 'types' });
-                    types.forEach(t => typesEl.appendChild(Utils.el('span', { class: 'type-badge type-' + t }, [t])));
+                    types.forEach(t => typesEl.appendChild(Utils.el('span', { class: 'type-badge type-' + t
+                            .toLowerCase() }, [t])));
                     infoBox.appendChild(typesEl);
 
                     const abWrap = Utils.el('div', { class: 'abilities' });
                     abilities.forEach(a => {
-                        const el = Utils.el('span', { class: 'ab' + (a.isHidden ? ' hidden' : '') }, [Utils
-                            .capitalize(a.name) + (a.isHidden ? ' (Hidden)' : '')
-                        ]);
+                        const el = Utils.el('span', { class: 'ab' + (a.isHidden ? ' hidden' : '') }, [a.name + (
+                            a.isHidden ? ' (Escondida)' : '')]);
                         abWrap.appendChild(el);
                     });
                     infoBox.appendChild(Utils.el('div', { style: 'margin-top:8px;font-size:.65rem;color:var(--text-2);font-family:var(--font-mono)' },
@@ -2844,8 +2978,11 @@
                     body.appendChild(top);
 
                     if (species) {
-                        const flavor = species.flavor_text_entries?.find(e => e.language.name === 'en')?.flavor_text ||
-                            '';
+                        // Buscar texto em português
+                        const ptEntry = species.flavor_text_entries?.find(e => e.language.name === 'pt' || e.language
+                            .name === 'pt-BR');
+                        const flavor = ptEntry?.flavor_text || species.flavor_text_entries?.find(e => e.language
+                            .name === 'en')?.flavor_text || '';
                         if (flavor) {
                             body.appendChild(Utils.el('div', { class: 'flavor-text' }, [flavor.replace(/[\n\f]/g,
                                 ' ')]));
@@ -2883,8 +3020,8 @@
                                     alt: item.name, loading: 'lazy' });
                                     box.appendChild(img);
                                 } catch (e) {}
-                                box.appendChild(Utils.el('span', { class: 'evo-name' }, [Utils.capitalize(item
-                                    .name)]));
+                                box.appendChild(Utils.el('span', { class: 'evo-name' }, [Utils.translatePokemonName(
+                                    item.name)]));
                                 chainEl.appendChild(box);
                                 if (i < evos.length - 1) chainEl.appendChild(Utils.el('span', { class: 'evo-arrow' },
                                     ['→']));
@@ -2900,7 +3037,6 @@
             function init() {
                 Theme.init();
 
-                // Inicializar VoiceSynth
                 VoiceSynth.init(document.getElementById('voiceBtn'));
 
                 Router.on('/', () => Views.renderDashboard());
@@ -2911,7 +3047,6 @@
                 Router.on('/favoritos', () => Views.renderFavorites());
                 Router.init();
 
-                // Botão de voz no modal
                 document.getElementById('voiceBtn').onclick = () => {
                     if (VoiceSynth.isSpeaking) {
                         VoiceSynth.stop();
@@ -2924,7 +3059,6 @@
                     }
                 };
 
-                // Botão azul da Pokédex (leva ao dashboard)
                 document.getElementById('pokedexBlueBtn').onclick = () => {
                     location.hash = '#/';
                     VoiceSynth.stop();
@@ -3009,7 +3143,7 @@
                                 const item = Utils.el('div', { class: 'sr-item' });
                                 const img = Utils.el('img', { src: p.sprites?.front_default || '',
                                 alt: p.name });
-                                const name = Utils.el('span', { class: 'sr-name' }, [Utils.capitalize(p
+                                const name = Utils.el('span', { class: 'sr-name' }, [Utils.translatePokemonName(p
                                     .name)]);
                                 const meta = Utils.el('span', { class: 'sr-meta' }, [Utils.formatId(p
                                     .id)]);
